@@ -413,6 +413,7 @@
                 transition:fade={{ duration: 400, easing: quartOut }}
             />
         {/if}
+        <p>ADD TERMS</p>
     </form>
 </div>
 
