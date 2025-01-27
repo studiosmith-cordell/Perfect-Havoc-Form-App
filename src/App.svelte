@@ -1,4 +1,7 @@
 <script>
+    import { quartOut } from 'svelte/easing';
+    import { fade } from 'svelte/transition';
+
     /** @type { string } */
     let firstName = $state(),
         /** @type { string } */
@@ -13,8 +16,10 @@
         address = $state(),
         /** @type { string } */
         country = $state(),
+        /** @type { boolean } */
+        vat = $state(false),
         /** @type { string } */
-        vat = $state(false);
+        vatNumber = $state();
 </script>
 
 <div id="wrapper">
@@ -399,6 +404,15 @@
                 No
             </label>
         </div>
+        {#if vat}
+            <input
+                bind:value={vatNumber}
+                type="text"
+                name="vat-number"
+                placeholder="VAT Number"
+                transition:fade={{ duration: 400, easing: quartOut }}
+            />
+        {/if}
     </form>
 </div>
 
