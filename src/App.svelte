@@ -12,7 +12,9 @@
         /** @type { string } */
         address = $state(),
         /** @type { string } */
-        country = $state();
+        country = $state(),
+        /** @type { string } */
+        vat = $state(false);
 </script>
 
 <div id="wrapper">
@@ -376,6 +378,27 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
+        <div>Are you VAT registered?</div>
+        <div id="vat">
+            <label>
+                <input
+                    bind:group={vat}
+                    type="radio"
+                    name="vat"
+                    value={true}
+                />
+                Yes
+            </label>
+            <label>
+                <input
+                    bind:group={vat}
+                    type="radio"
+                    name="vat"
+                    value={false}
+                />
+                No
+            </label>
+        </div>
     </form>
 </div>
 
@@ -396,5 +419,19 @@
 
     textarea {
         min-height: 4lh;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    input[type='radio'] {
+        cursor: pointer;
+    }
+
+    #vat {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em 0.5em;
     }
 </style>
