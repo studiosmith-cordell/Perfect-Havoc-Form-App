@@ -420,7 +420,7 @@
                 required
                 aria-required="true"
             />
-            I/We confirm that the above details are correct
+            I/We confirm that the above details are correct.
         </label>
 
         <label>
@@ -431,7 +431,7 @@
                 aria-required="true"
             />
             I/We have the necessary authority to amend the above details and these
-            details as amended above are correct
+            details as amended above are correct.
         </label>
 
         <label>
@@ -446,7 +446,7 @@
             <a
                 href="http://perfecthavoc.com/terms-and-conditions/standard-payment-conditions"
                 >standard payment conditions</a
-            >
+            >.
         </label>
 
         <button class:submitting>
