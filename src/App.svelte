@@ -31,9 +31,7 @@
         /** @type { boolean } */
         submitting = $state(false),
         /** @type { string }*/
-        iframeUrl = $state(),
-        /** @type { any } */
-        iframe = $state();
+        iframeUrl = $state();
 
     /** @param { Event } e */
     async function handleFormSubmit(e) {
@@ -56,7 +54,7 @@
         };
 
         const request = await fetch(
-            ' https://my-app.perfecthavoc.workers.dev/payee',
+            ' https://curve.perfecthavoc.workers.dev/payee',
             {
                 method: 'POST',
                 body: JSON.stringify(body),
@@ -557,6 +555,15 @@
     #wrapper {
         padding: 2em;
         box-sizing: border-box;
+        color: white;
+        background-color: black;
+        font-family: Inter, sans-serif;
+        font-size: 1em;
+        line-height: 1.25;
+    }
+
+    a {
+        color: currentColor;
     }
 
     form {
