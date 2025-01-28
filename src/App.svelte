@@ -28,10 +28,18 @@
         payeeId = $state(),
         /** @type { string }*/
         iframeUrl = $state();
+
+    /** @param { Event } e */
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        submitting = true;
+
+        submitting = false;
+    }
 </script>
 
 <div id="wrapper">
-    <form action="">
+    <form onsubmit={(e) => handleFormSubmit(e)}>
         <input
             bind:value={firstName}
             type="text"
@@ -105,6 +113,9 @@
             >
                 Select Country
             </option>
+            <!-- <option value="GB">United Kingdom</option>
+            <option value="US">United States of America</option>
+            <hr /> -->
             <option value="AF">Afghanistan</option>
             <option value="AL">Albania</option>
             <option value="DZ">Algeria</option>
@@ -340,7 +351,7 @@
             <option value="UA">Ukraine</option>
             <option value="AE">United Arab Emirates</option>
             <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
+            <option value="US">United States of America</option>
             <option value="UY">Uruguay</option>
             <option value="UZ">Uzbekistan</option>
             <option value="VU">Vanuatu</option>
