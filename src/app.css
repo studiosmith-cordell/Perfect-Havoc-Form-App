@@ -1,0 +1,11 @@
+body {
+    color: white;
+    background-color: black;
+    font-family: Inter, sans-serif;
+    font-size: 1em;
+    line-height: 1.25;
+}
+
+a {
+    color: currentColor;
+}

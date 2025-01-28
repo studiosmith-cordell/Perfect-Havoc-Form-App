@@ -387,6 +387,7 @@
                 No
             </label>
         </div>
+
         {#if vat}
             <div in:fade={{ duration: 400, easing: quartOut }}>
                 <input
@@ -394,6 +395,8 @@
                     type="text"
                     name="vat-number"
                     placeholder="VAT Number"
+                    required
+                    aria-required="true"
                 />
                 <p>
                     If you deregister for VAT or the VAT registration above is
@@ -406,7 +409,10 @@
             </div>
         {/if}
 
-        <h4>Please read and accept the below terms carefully.</h4>
+        <div>
+            <strong>Please read and accept the below terms carefully:</strong>
+        </div>
+
         <label>
             <input
                 type="checkbox"
@@ -414,8 +420,9 @@
                 required
                 aria-required="true"
             />
-            I/we confirm that the above details are correct
+            I/We confirm that the above details are correct
         </label>
+
         <label>
             <input
                 type="checkbox"
@@ -423,7 +430,7 @@
                 required
                 aria-required="true"
             />
-            I/we have the necessary authority to amend the above details and these
+            I/We have the necessary authority to amend the above details and these
             details as amended above are correct
         </label>
 
@@ -434,33 +441,66 @@
                 required
                 aria-required="true"
             />
-            I/we confirm that I/we agree to be covered by the Self-Billing system
+            I/We confirm that I/we agree to be covered by the Self-Billing system
             as detailed in our
             <a
                 href="http://perfecthavoc.com/terms-and-conditions/standard-payment-conditions"
                 >standard payment conditions</a
             >
         </label>
+
+        <button class:submitting>
+            {#if submitting}
+                <span class="spinner"></span>
+            {:else}
+                <span>Next</span>
+            {/if}
+        </button>
     </form>
 </div>
 
 <style>
     #wrapper {
         padding: 2em;
+        box-sizing: border-box;
     }
 
     form {
         display: flex;
         flex-direction: column;
         gap: 1em;
+        accent-color: #4ab9e9;
     }
 
-    input {
+    input,
+    select,
+    textarea {
+        padding-block: 0.5em;
         font-size: 1em;
+        color: white;
+        background-color: transparent;
+        border: none;
+        border-bottom: solid 1px;
+        outline: none;
+        border-radius: 0;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #a9a9a9;
+    }
+
+    input:focus {
+        border-color: rgb(74, 185, 233);
+    }
+
+    select:not(:user-valid) {
+        color: #a9a9a9;
     }
 
     textarea {
-        min-height: 4lh;
+        font-family: Inter, sans-serif;
+        height: fit-content;
     }
 
     select {
@@ -479,5 +519,56 @@
 
     p {
         text-wrap: balance;
+    }
+
+    button.submitting {
+        pointer-events: none;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 1em !important;
+        height: 1em !important;
+        border: 0.125em solid currentColor;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        animation: rotation 1s linear infinite;
+        transition: border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    label {
+        color: #d3d3d3;
+        text-wrap: balance;
+    }
+
+    label a {
+        color: white;
+    }
+
+    button {
+        margin-block-start: 2em;
+        padding: 1em 2em;
+        border: solid 2px;
+        border-radius: 4px;
+        font-size: 1em;
+        color: #4ab9e9;
+        background-color: transparent;
+        text-shadow: 0 0 6px;
+        box-shadow: 0 0 3px 1px #4ab9e9;
+        transition: box-shadow 200ms ease-in;
+        cursor: pointer;
+    }
+
+    button:hover {
+        box-shadow: 0 0 9px 2px #4ab9e9;
     }
 </style>
