@@ -30,10 +30,10 @@
         vatNumber = $state(),
         /** @type { boolean } */
         submitting = $state(false),
-        /** @type { string | undefined } */
-        payeeId = $state(),
         /** @type { string }*/
-        iframeUrl = $state();
+        iframeUrl = $state(),
+        /** @type { any } */
+        iframe = $state();
 
     /** @param { Event } e */
     async function handleFormSubmit(e) {
@@ -56,14 +56,12 @@
         };
 
         const request = await fetch(
-            ' https://curve.perfecthavoc.workers.dev/payee',
+            ' https://my-app.perfecthavoc.workers.dev/payee',
             {
                 method: 'POST',
                 body: JSON.stringify(body),
             }
         ).then((x) => x.json());
-
-        console.log(request);
 
         iframeUrl = request.url;
 
@@ -667,7 +665,6 @@
 
     iframe {
         width: 100%;
-        height: auto;
         min-height: 800px;
     }
 </style>
