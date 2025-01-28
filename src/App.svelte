@@ -195,8 +195,9 @@
                     Select Country
                 </option>
                 <!-- <option value="GB">United Kingdom</option>
-            <option value="US">United States of America</option>
-            <hr /> -->
+                <option value="US">United States of America</option>
+                <option value="IE">Ireland</option>
+                <hr /> -->
                 <option value="AF">Afghanistan</option>
                 <option value="AL">Albania</option>
                 <option value="DZ">Algeria</option>
