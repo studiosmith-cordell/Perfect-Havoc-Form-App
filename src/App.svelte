@@ -535,7 +535,10 @@
                 >.
             </label>
 
-            <button class:submitting>
+            <button
+                class:submitting
+                aria-label="Next Step"
+            >
                 {#if submitting}
                     <span class="spinner"></span>
                 {:else}
@@ -545,6 +548,7 @@
         </form>
     {:else}
         <iframe
+            in:fade={{ duration: 600, easing: quartOut }}
             title="Payee Form"
             src={iframeUrl}
         ></iframe>
