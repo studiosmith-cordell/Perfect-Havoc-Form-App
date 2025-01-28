@@ -17,6 +17,12 @@
         /** @type { string } */
         address = $state(),
         /** @type { string } */
+        city = $state(),
+        /** @type { string } */
+        stateOrProvince = $state(),
+        /** @type { string } */
+        postcode = $state(),
+        /** @type { string } */
         country = $state(),
         /** @type { boolean } */
         vat = $state(false),
@@ -39,7 +45,10 @@
 </script>
 
 <div id="wrapper">
-    <form onsubmit={(e) => handleFormSubmit(e)}>
+    <form
+        onsubmit={(e) => handleFormSubmit(e)}
+        autocomplete="on"
+    >
         <input
             bind:value={firstName}
             type="text"
@@ -47,6 +56,8 @@
             placeholder="First Name"
             required
             aria-required="true"
+            aria-label="First Name"
+            autocomplete="given-name"
         />
 
         <input
@@ -56,6 +67,8 @@
             placeholder="Last Name"
             required
             aria-required="true"
+            aria-label="Last Name"
+            autocomplete="family-name"
         />
 
         <input
@@ -63,6 +76,8 @@
             type="text"
             name="company-name"
             placeholder="Company (if applicable)"
+            aria-label="Company (if applicable)"
+            autocomplete="organization"
         />
 
         <input
@@ -72,6 +87,7 @@
             placeholder="Artist Name"
             required
             aria-required="true"
+            aria-label="Artist Name"
         />
 
         <input
@@ -81,6 +97,8 @@
             placeholder="Email"
             required
             aria-required="true"
+            aria-label="Email"
+            autocomplete="email"
         />
 
         <input
@@ -90,21 +108,60 @@
             placeholder="Phone"
             required
             aria-required="true"
+            aria-label="Phone"
+            autocomplete="tel"
         />
 
-        <textarea
+        <input
             bind:value={address}
             name="address"
-            placeholder="Address"
+            type="text"
+            placeholder="Street Address"
             required
             aria-required="true"
-        ></textarea>
+            aria-label="Street Address"
+            autocomplete="street-address"
+        />
+
+        <input
+            bind:value={city}
+            type="text"
+            name="city"
+            placeholder="City"
+            required
+            aria-required="true"
+            aria-label="City"
+            autocomplete="address-level2"
+        />
+
+        <input
+            bind:value={stateOrProvince}
+            type="text"
+            name="state"
+            placeholder="State/Province"
+            aria-label="State or Province"
+            autocomplete="address-level1"
+        />
+
+        <input
+            bind:value={postcode}
+            type="text"
+            name="postcode"
+            placeholder="Postcode"
+            required
+            aria-required="true"
+            aria-label="Postcode"
+            autocomplete="postal-code"
+        />
 
         <select
             bind:value={country}
             id="country"
             name="country"
             required
+            aria-required="true"
+            aria-label="Country"
+            autocomplete="country"
         >
             <option
                 selected
@@ -366,7 +423,7 @@
             <option value="ZW">Zimbabwe</option>
         </select>
 
-        <div>Are you VAT registered?</div>
+        <div style="margin-block-start: 1em;">Are you VAT registered?</div>
         <div id="vat">
             <label>
                 <input
@@ -374,6 +431,7 @@
                     type="radio"
                     name="vat"
                     value={true}
+                    aria-label="I/We are VAT registered"
                 />
                 Yes
             </label>
@@ -383,6 +441,7 @@
                     type="radio"
                     name="vat"
                     value={false}
+                    aria-label="I/we are not VAT registered"
                 />
                 No
             </label>
@@ -397,6 +456,7 @@
                     placeholder="VAT Number"
                     required
                     aria-required="true"
+                    aria-label="VAT Number"
                 />
                 <p>
                     If you deregister for VAT or the VAT registration above is
@@ -409,7 +469,7 @@
             </div>
         {/if}
 
-        <div>
+        <div style="margin-block-start: 1em;">
             <strong>Please read and accept the below terms carefully:</strong>
         </div>
 
@@ -473,8 +533,7 @@
     }
 
     input,
-    select,
-    textarea {
+    select {
         padding-block: 0.5em;
         font-size: 1em;
         color: white;
@@ -485,8 +544,7 @@
         border-radius: 0;
     }
 
-    input::placeholder,
-    textarea::placeholder {
+    input::placeholder {
         color: #a9a9a9;
     }
 
@@ -494,17 +552,16 @@
         border-color: rgb(74, 185, 233);
     }
 
+    select {
+        cursor: pointer;
+    }
+
     select:not(:user-valid) {
         color: #a9a9a9;
     }
 
-    textarea {
-        font-family: Inter, sans-serif;
-        height: fit-content;
-    }
-
-    select {
-        cursor: pointer;
+    input[type='text'] {
+        width: 100%;
     }
 
     input[type='radio'] {
