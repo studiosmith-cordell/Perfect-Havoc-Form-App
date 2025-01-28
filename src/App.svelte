@@ -7,6 +7,8 @@
         /** @type { string } */
         lastName = $state(),
         /** @type { string } */
+        companyName = $state(),
+        /** @type { string } */
         artistName = $state(),
         /** @type { string } */
         email = $state(),
@@ -19,7 +21,13 @@
         /** @type { boolean } */
         vat = $state(false),
         /** @type { string } */
-        vatNumber = $state();
+        vatNumber = $state(),
+        /** @type { boolean } */
+        submitting = $state(false),
+        /** @type { string | undefined } */
+        payeeId = $state(),
+        /** @type { string }*/
+        iframeUrl = $state();
 </script>
 
 <div id="wrapper">
@@ -40,6 +48,13 @@
             placeholder="Last Name"
             required
             aria-required="true"
+        />
+
+        <input
+            bind:value={companyName}
+            type="text"
+            name="company-name"
+            placeholder="Company (if applicable)"
         />
 
         <input
@@ -405,15 +420,59 @@
             </label>
         </div>
         {#if vat}
-            <input
-                bind:value={vatNumber}
-                type="text"
-                name="vat-number"
-                placeholder="VAT Number"
-                transition:fade={{ duration: 400, easing: quartOut }}
-            />
+            <div in:fade={{ duration: 400, easing: quartOut }}>
+                <input
+                    bind:value={vatNumber}
+                    type="text"
+                    name="vat-number"
+                    placeholder="VAT Number"
+                />
+                <p>
+                    If you deregister for VAT or the VAT registration above is
+                    no longer applicable you must advise Perfect Havoc Limited
+                    immediately in writing via email at <a
+                        href="mailto:info@perfecthavoc.com"
+                        >info@perfecthavoc.com</a
+                    >.
+                </p>
+            </div>
         {/if}
-        <p>ADD TERMS</p>
+
+        <h4>Please read and accept the below terms carefully.</h4>
+        <label>
+            <input
+                type="checkbox"
+                name="details-true"
+                required
+                aria-required="true"
+            />
+            I/we confirm that the above details are correct
+        </label>
+        <label>
+            <input
+                type="checkbox"
+                name="amend"
+                required
+                aria-required="true"
+            />
+            I/we have the necessary authority to amend the above details and these
+            details as amended above are correct
+        </label>
+
+        <label>
+            <input
+                type="checkbox"
+                name=""
+                required
+                aria-required="true"
+            />
+            I/we confirm that I/we agree to be covered by the Self-Billing system
+            as detailed in our
+            <a
+                href="http://perfecthavoc.com/terms-and-conditions/standard-payment-conditions"
+                >standard payment conditions</a
+            >
+        </label>
     </form>
 </div>
 
@@ -448,5 +507,9 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1em 0.5em;
+    }
+
+    p {
+        text-wrap: balance;
     }
 </style>
