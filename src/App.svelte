@@ -662,6 +662,7 @@
     label {
         color: #d3d3d3;
         text-wrap: balance;
+        font-weight: 400;
     }
 
     label a {
