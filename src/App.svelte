@@ -570,7 +570,6 @@
 
 <style>
     #wrapper {
-        padding: 2em;
         box-sizing: border-box;
         color: white;
         background-color: black;
