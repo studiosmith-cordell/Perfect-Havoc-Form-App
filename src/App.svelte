@@ -1,6 +1,6 @@
 <script>
     import { quartOut } from 'svelte/easing';
-    import { fade } from 'svelte/transition';
+    import { fade, slide } from 'svelte/transition';
 
     /** @type { string } */
     let firstName = $state(),
@@ -30,8 +30,10 @@
         vatNumber = $state(),
         /** @type { boolean } */
         submitting = $state(false),
-        /** @type { string }*/
-        iframeUrl = $state();
+        /** @type { string | undefined }*/
+        iframeUrl = $state(),
+        /** @type { string | undefined }*/
+        error = $state();
 
     /** @param { Event } e */
     async function handleFormSubmit(e) {
@@ -54,12 +56,18 @@
         };
 
         const request = await fetch(
-            ' https://curve.perfecthavoc.workers.dev/payee',
+            'https://curve.perfecthavoc.workers.dev/payee',
             {
                 method: 'POST',
                 body: JSON.stringify(body),
             }
         ).then((x) => x.json());
+
+        if (request.error) {
+            submitting = false;
+            error = request.error;
+            return;
+        }
 
         iframeUrl = request.url;
 
@@ -546,6 +554,13 @@
                     <span>Next</span>
                 {/if}
             </button>
+            {#if error}
+                <span
+                    transition:slide={{ duration: 400, easing: quartOut }}
+                    style="margin-block-start: 0.5em; color: #f60000;"
+                    >{error}</span
+                >
+            {/if}
         </form>
     {:else}
         <iframe
