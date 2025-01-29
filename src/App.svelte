@@ -202,10 +202,9 @@
                 >
                     Select Country
                 </option>
-                <!-- <option value="GB">United Kingdom</option>
+                <option value="GB">United Kingdom</option>
                 <option value="US">United States of America</option>
-                <option value="IE">Ireland</option>
-                <hr /> -->
+                <hr />
                 <option value="AF">Afghanistan</option>
                 <option value="AL">Albania</option>
                 <option value="DZ">Algeria</option>
@@ -440,8 +439,6 @@
                 <option value="UG">Uganda</option>
                 <option value="UA">Ukraine</option>
                 <option value="AE">United Arab Emirates</option>
-                <option value="GB">United Kingdom</option>
-                <option value="US">United States of America</option>
                 <option value="UY">Uruguay</option>
                 <option value="UZ">Uzbekistan</option>
                 <option value="VU">Vanuatu</option>
