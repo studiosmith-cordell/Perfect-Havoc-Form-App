@@ -691,4 +691,8 @@
         width: 100%;
         min-height: 800px;
     }
+
+    input[type='checkbox'] {
+        cursor: pointer;
+    }
 </style>
